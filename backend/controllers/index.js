@@ -16,3 +16,27 @@ export const addNewBook = async (req, res) => {
     console.warn(e.message);
   }
 };
+
+export const deleteOneBook = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const text = 'DELETE FROM books WHERE id = $1';
+    await pool.query(text, [id]);
+    res.sendStatus(200);
+  } catch (e) {
+    console.warn(e.message);
+  }
+};
+
+export const editOneBook = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const { name, year, genre, author } = req.body;
+    const text =
+      'UPDATE books SET name = $1, author = $2, year = $3, genre = $4 WHERE id = $5';
+    await pool.query(text, [name, author, year, genre, id]);
+    res.sendStatus(200);
+  } catch (e) {
+    console.warn(e.message);
+  }
+};

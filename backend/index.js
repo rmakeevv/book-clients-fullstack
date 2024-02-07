@@ -1,5 +1,10 @@
 import express from 'express';
-import { addNewBook, getAllBooks } from './controllers/index.js';
+import {
+  addNewBook,
+  deleteOneBook,
+  editOneBook,
+  getAllBooks,
+} from './controllers/index.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
@@ -10,6 +15,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post('/book', addNewBook);
+app.delete('/book/:id', deleteOneBook);
+app.put('/book/:id', editOneBook);
 
 app.get('/books', getAllBooks);
 
