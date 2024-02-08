@@ -6,6 +6,12 @@ import React, { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import { Button, Flex, Form, Popconfirm, Table, Typography } from 'antd';
 import { IBook } from 'types';
+import {
+  DeleteOutlined,
+  EditOutlined,
+  RollbackOutlined,
+  SaveOutlined,
+} from '@ant-design/icons';
 
 const boxStyle: React.CSSProperties = {
   width: '100%',
@@ -123,28 +129,41 @@ const App = () => {
         const editable = isEditing(record);
         return editable ? (
           <span>
-            <Typography.Link
+            <Button
               onClick={() => save(record.id)}
               style={{ marginRight: 8 }}
+              type={'default'}
+              size={'large'}
             >
-              Сохранить
-            </Typography.Link>
+              <SaveOutlined />
+            </Button>
             <Popconfirm
               title="Уверены, что хотите отменить?"
               onConfirm={cancel}
             >
-              <a>Отменить</a>
+              <Button size={'large'}>
+                <RollbackOutlined />
+              </Button>
             </Popconfirm>
           </span>
         ) : (
           <Flex gap={'12px'} align={'center'}>
-            <Typography.Link
+            <Button
+              type={'default'}
+              size={'large'}
               disabled={editingKey !== ''}
               onClick={() => edit(record)}
             >
-              Edit
-            </Typography.Link>
-            <Button onClick={() => deleteRecord(record)}>Delete</Button>
+              <EditOutlined />
+            </Button>
+            <Popconfirm
+              title="Уверены, что хотите удалить?"
+              onConfirm={() => deleteRecord(record)}
+            >
+              <Button type={'default'} size={'large'}>
+                <DeleteOutlined />
+              </Button>
+            </Popconfirm>
           </Flex>
         );
       },

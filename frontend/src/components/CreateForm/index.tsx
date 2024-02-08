@@ -57,7 +57,7 @@ const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
 
       <Form.Item wrapperCol={{ span: 16 }}>
         <Button type="primary" htmlType="submit">
-          Submit
+          Добавить
         </Button>
       </Form.Item>
     </Form>
