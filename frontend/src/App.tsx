@@ -1,3 +1,5 @@
+import ContentWrapper from 'components/ContentWrapper';
+import CreateForm from 'components/CreateForm';
 import TableContainer from 'components/TableContainer';
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
@@ -48,6 +50,21 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<AxiosError>();
 
+  const onFinish = (values: IBook) => {
+    axios.post<IBook>('http://localhost:5000/book', values).then((res) =>
+      setBookList((prevState) => {
+        if (prevState) {
+          return [...prevState, res.data];
+        }
+        return [];
+      })
+    );
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
+
   useEffect(() => {
     setLoading(true);
     axios
@@ -68,14 +85,17 @@ const App = () => {
     );
 
   return (
-    <TableContainer>
-      <Table
-        rowKey={(book) => book.id}
-        columns={columns}
-        dataSource={bookList}
-        loading={loading}
-      />
-    </TableContainer>
+    <ContentWrapper>
+      <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
+      <TableContainer>
+        <Table
+          rowKey={(book) => book.id}
+          columns={columns}
+          dataSource={bookList}
+          loading={loading}
+        />
+      </TableContainer>
+    </ContentWrapper>
   );
 };
 

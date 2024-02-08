@@ -1,0 +1,6 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    background: rgba(24, 24, 29, 0.07);
+}
