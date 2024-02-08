@@ -51,7 +51,11 @@ const App = () => {
 
   const deleteRecord = async (item: IBook) => {
     try {
-      await axios.delete('http://localhost:5000/' + item.id);
+      await axios.delete('http://localhost:5000/book/' + item.id);
+      const newData = bookList?.length ? [...bookList] : [];
+      const index = newData.findIndex((newItem) => item.id === newItem.id);
+      newData.splice(index, 1);
+      setBookList(newData);
     } catch (e) {
       console.log(e);
     }
@@ -60,7 +64,6 @@ const App = () => {
   const save = async (key: React.Key) => {
     try {
       const row = (await form.validateFields()) as IBook;
-
       const newData = bookList?.length ? [...bookList] : [];
       const index = newData.findIndex((item) => key === item.id);
       if (index > -1) {
