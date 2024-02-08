@@ -1,7 +1,7 @@
 import { pool } from '../db.js';
 
 export const getAllBooks = async (req, res) => {
-  const data = await pool.query('SELECT * FROM books');
+  const data = await pool.query('SELECT * FROM books ORDER BY id DESC;');
   res.send(data.rows);
 };
 

@@ -18,13 +18,12 @@ const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
   return (
     <Form
       name="basic"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: '600px' }}
+      style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
+      layout={'inline'}
     >
       <Form.Item<FieldType>
         label="Название"
@@ -56,7 +55,7 @@ const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
         <Input />
       </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+      <Form.Item wrapperCol={{ span: 16 }}>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>

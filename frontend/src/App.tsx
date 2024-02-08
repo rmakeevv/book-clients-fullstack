@@ -4,7 +4,7 @@ import EditableCell from 'components/EditableCell';
 import TableContainer from 'components/TableContainer';
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
-import { Flex, Form, Popconfirm, Table, Typography } from 'antd';
+import { Button, Flex, Form, Popconfirm, Table, Typography } from 'antd';
 import { IBook } from 'types';
 
 const boxStyle: React.CSSProperties = {
@@ -29,7 +29,7 @@ const App = () => {
     axios.post<IBook>('http://localhost:5000/book', values).then((res) =>
       setBookList((prevState) => {
         if (prevState) {
-          return [...prevState, res.data];
+          return [res.data, ...prevState];
         }
         return [];
       })
@@ -47,6 +47,14 @@ const App = () => {
 
   const cancel = () => {
     setEditingKey('');
+  };
+
+  const deleteRecord = async (item: IBook) => {
+    try {
+      await axios.delete('http://localhost:5000/' + item.id);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const save = async (key: React.Key) => {
@@ -81,34 +89,32 @@ const App = () => {
 
   const columns = [
     {
-      title: 'Id',
+      title: 'ID',
       dataIndex: 'id',
-
       render: (text: string) => <a>{text}</a>,
     },
     {
-      title: 'Name',
+      title: 'Название',
       dataIndex: 'name',
       editable: true,
     },
     {
-      title: 'Year',
+      title: 'Год',
       dataIndex: 'year',
       editable: true,
     },
     {
-      title: 'Genre',
+      title: 'Жанр',
       editable: true,
-
       dataIndex: 'genre',
     },
     {
-      title: 'Author',
+      title: 'Автор',
       editable: true,
       dataIndex: 'author',
     },
     {
-      title: 'operation',
+      title: 'Действия',
       dataIndex: 'operation',
       render: (_: any, record: IBook) => {
         const editable = isEditing(record);
@@ -118,19 +124,25 @@ const App = () => {
               onClick={() => save(record.id)}
               style={{ marginRight: 8 }}
             >
-              Save
+              Сохранить
             </Typography.Link>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
+            <Popconfirm
+              title="Уверены, что хотите отменить?"
+              onConfirm={cancel}
+            >
+              <a>Отменить</a>
             </Popconfirm>
           </span>
         ) : (
-          <Typography.Link
-            disabled={editingKey !== ''}
-            onClick={() => edit(record)}
-          >
-            Edit
-          </Typography.Link>
+          <Flex gap={'12px'} align={'center'}>
+            <Typography.Link
+              disabled={editingKey !== ''}
+              onClick={() => edit(record)}
+            >
+              Edit
+            </Typography.Link>
+            <Button onClick={() => deleteRecord(record)}>Delete</Button>
+          </Flex>
         );
       },
     },
