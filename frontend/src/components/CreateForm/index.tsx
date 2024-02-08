@@ -18,12 +18,12 @@ const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
   return (
     <Form
       name="basic"
-      style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}
+      style={{ maxWidth: '400px' }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
-      layout={'inline'}
+      layout={'vertical'}
     >
       <Form.Item<FieldType>
         label="Название"
