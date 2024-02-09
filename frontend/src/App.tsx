@@ -6,7 +6,7 @@ import {
 } from 'components';
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
-import { Button, Flex, Form, Popconfirm, Table } from 'antd';
+import { Button, Flex, Form, message, Popconfirm, Space, Table } from 'antd';
 import { IBook } from 'types';
 import {
   DeleteOutlined,
@@ -30,6 +30,14 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<AxiosError>();
   const [editingKey, setEditingKey] = useState('');
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const showSuccessMessage = (content: string) => {
+    messageApi.open({
+      type: 'success',
+      content,
+    });
+  };
 
   const isEditing = (record: IBook) => record.id.toString() === editingKey;
 
@@ -37,6 +45,7 @@ const App = () => {
     axios.post<IBook>('http://localhost:5000/book', values).then((res) =>
       setBookList((prevState) => {
         if (prevState) {
+          showSuccessMessage('Запись успешно добавлена!');
           return [res.data, ...prevState];
         }
         return [];
@@ -130,10 +139,9 @@ const App = () => {
       render: (_: any, record: IBook) => {
         const editable = isEditing(record);
         return editable ? (
-          <span>
+          <Space>
             <Button
               onClick={() => save(record.id)}
-              style={{ marginRight: 8 }}
               type={'default'}
               size={'large'}
             >
@@ -147,9 +155,9 @@ const App = () => {
                 <RollbackOutlined />
               </Button>
             </Popconfirm>
-          </span>
+          </Space>
         ) : (
-          <Flex gap={'12px'} align={'center'}>
+          <Space>
             <Button
               type={'default'}
               size={'large'}
@@ -166,7 +174,7 @@ const App = () => {
                 <DeleteOutlined />
               </Button>
             </Popconfirm>
-          </Flex>
+          </Space>
         );
       },
     },
@@ -209,6 +217,7 @@ const App = () => {
 
   return (
     <ContentWrapper>
+      {contextHolder}
       <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
       <TableContainer>
         <Form form={form} component={false}>
