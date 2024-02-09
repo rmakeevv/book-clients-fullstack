@@ -1,10 +1,12 @@
-import ContentWrapper from 'components/ContentWrapper';
-import CreateForm from 'components/CreateForm';
-import EditableCell from 'components/EditableCell';
-import TableContainer from 'components/TableContainer';
+import {
+  ContentWrapper,
+  CreateForm,
+  EditableCell,
+  TableContainer,
+} from 'components';
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
-import { Button, Flex, Form, Popconfirm, Table, Typography } from 'antd';
+import { Button, Flex, Form, Popconfirm, Table } from 'antd';
 import { IBook } from 'types';
 import {
   DeleteOutlined,
