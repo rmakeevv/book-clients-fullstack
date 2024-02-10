@@ -24,7 +24,7 @@ const boxStyle: React.CSSProperties = {
 
 type GetBooksResponse = IBook[];
 
-const App = () => {
+const Root = () => {
   const [form] = Form.useForm();
   const [bookList, setBookList] = useState<undefined | IBook[]>(undefined);
   const [loading, setLoading] = useState(false);
@@ -243,4 +243,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Root;
