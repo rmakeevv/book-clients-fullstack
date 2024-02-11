@@ -18,7 +18,7 @@ const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
   return (
     <Form
       name="basic"
-      style={{ maxWidth: '400px', }}
+      style={{ width: '180px', }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}

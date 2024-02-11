@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './index.module.css';
 import {
   AliwangwangOutlined,
-  DoubleRightOutlined,
   PoweroffOutlined,
 } from '@ant-design/icons';
 import { Button, Space } from 'antd';

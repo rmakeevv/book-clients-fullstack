@@ -118,6 +118,7 @@ const Root = () => {
     {
       title: 'ID',
       dataIndex: 'id',
+
       render: (text: string) => <a>{text}</a>,
     },
     {
@@ -129,6 +130,7 @@ const Root = () => {
       title: 'Год',
       dataIndex: 'year',
       editable: true,
+      width: '70px',
     },
     {
       title: 'Количество',
@@ -147,6 +149,7 @@ const Root = () => {
     },
     {
       title: 'Действия',
+      width: '130px',
       dataIndex: 'operation',
       render: (_: any, record: IBook) => {
         const editable = isEditing(record);
@@ -156,16 +159,13 @@ const Root = () => {
               onClick={() => save(record.id)}
               type={'default'}
               size={'large'}
-            >
-              <SaveOutlined />
-            </Button>
+              icon={<SaveOutlined />}
+            ></Button>
             <Popconfirm
               title="Уверены, что хотите отменить?"
               onConfirm={cancel}
             >
-              <Button size={'large'}>
-                <RollbackOutlined />
-              </Button>
+              <Button size={'large'} icon={<RollbackOutlined />}></Button>
             </Popconfirm>
           </Space>
         ) : (
@@ -175,16 +175,17 @@ const Root = () => {
               size={'large'}
               disabled={editingKey !== ''}
               onClick={() => edit(record)}
-            >
-              <EditOutlined />
-            </Button>
+              icon={<EditOutlined />}
+            ></Button>
             <Popconfirm
               title="Уверены, что хотите удалить?"
               onConfirm={() => deleteRecord(record)}
             >
-              <Button type={'default'} size={'large'}>
-                <DeleteOutlined />
-              </Button>
+              <Button
+                type={'default'}
+                size={'large'}
+                icon={<DeleteOutlined />}
+              ></Button>
             </Popconfirm>
           </Space>
         );
@@ -235,7 +236,7 @@ const Root = () => {
       <Header />
       <ContentWrapper>
         {contextHolder}
-        <div style={{ padding: '60px 20px' }}>
+        <div style={{ padding: '65px 20px', boxSizing: 'border-box' }}>
           <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
         </div>
 
