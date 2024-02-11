@@ -32,7 +32,7 @@ function Auth() {
 
   return (
     <div className={styles.page}>
-      <div style={{ paddingBottom: '300px' }}>
+      <div style={{ paddingBottom: '10%' }}>
         <div className={styles.logo__container}>
           <AliwangwangOutlined className={styles.logo} />
 
@@ -49,7 +49,7 @@ function Auth() {
         </div>
         <Form
           name="basic"
-          style={{ width: '400px' }}
+          style={{ maxWidth: '400px' }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
