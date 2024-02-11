@@ -227,7 +227,10 @@ const Root = () => {
       <Header />
       <ContentWrapper>
         {contextHolder}
-        <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
+        <div style={{padding: '60px 20px' }}>
+          <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
+        </div>
+
         <TableContainer>
           <Form form={form} component={false}>
             <Table

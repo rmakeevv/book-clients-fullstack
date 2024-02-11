@@ -10,7 +10,6 @@ const onFinishFailed = (errorInfo: any) => {
 type FieldType = {
   username?: string;
   password?: string;
-  remember?: string;
 };
 
 function Auth() {
@@ -20,9 +19,8 @@ function Auth() {
     try {
       const token = await axios.post('http://localhost:5000/user/auth', values);
       console.log(token);
-      navigate('/')
+      navigate('/');
       localStorage.setItem('token', token.data);
-      
     } catch (e) {
       console.log(e);
     }
@@ -61,14 +59,6 @@ function Auth() {
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
           <Input.Password />
-        </Form.Item>
-
-        <Form.Item<FieldType>
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{ offset: 8, span: 16 }}
-        >
-          <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

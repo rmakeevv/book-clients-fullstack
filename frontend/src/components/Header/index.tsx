@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.css';
 import { DoubleRightOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
@@ -13,7 +13,13 @@ export default function Header() {
 
   return (
     <div className={styles.container}>
-      <DoubleRightOutlined style={{ color: 'wheat' }} />
+      <Space>
+      <DoubleRightOutlined style={{ color: 'white' }} />
+      <span style={{fontSize: '16px', fontWeight: '600', color: 'white'}}>
+      BOOKLIST
+      </span>
+      
+      </Space>
       <Button onClick={logOut}>Logout</Button>
     </div>
   );
