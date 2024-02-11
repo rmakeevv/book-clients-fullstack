@@ -18,9 +18,8 @@ const Router = createBrowserRouter([
         path: 'auth',
         element: <Auth />,
       },
-    ]
-  }
-  
+    ],
+  },
 ]);
 
 export default Router;
