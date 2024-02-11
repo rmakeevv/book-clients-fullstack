@@ -23,7 +23,15 @@ instock int);
 CSV-файл таблицы лежит в корне проекта.
 
 ## 2. Backend
-Backend использует .env переменные, которые указаны в файле.
+Backend использует .env переменные, которые указаны в файле:
+```
+PORT = 5000
+JWT_SECRET_KEY = gfg_jwt_secret_key
+TOKEN_HEADER_KEY = gfg_token_header_key
+DB_HOST = localhost
+DB_PORT = 5432
+DB_NAME = book_clients
+```
 
 Установка и запуск:
 ```
