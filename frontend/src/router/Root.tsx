@@ -14,6 +14,7 @@ import {
   RollbackOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
+import Header from 'components/Header';
 
 const boxStyle: React.CSSProperties = {
   width: '100%',
@@ -35,7 +36,7 @@ const Root = () => {
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000/',
-    headers: {'gfg_token_header_key': token}
+    headers: { gfg_token_header_key: token },
   });
 
   const showSuccessMessage = (content: string) => {
@@ -222,30 +223,33 @@ const Root = () => {
     );
 
   return (
-    <ContentWrapper>
-      {contextHolder}
-      <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
-      <TableContainer>
-        <Form form={form} component={false}>
-          <Table
-            columns={mergedColumns}
-            rowKey={(item: IBook) => item.id}
-            components={{
-              body: {
-                cell: EditableCell,
-              },
-            }}
-            bordered
-            dataSource={bookList}
-            rowClassName="editable-row"
-            pagination={{
-              onChange: cancel,
-            }}
-            loading={loading}
-          />
-        </Form>
-      </TableContainer>
-    </ContentWrapper>
+    <div>
+      <Header />
+      <ContentWrapper>
+        {contextHolder}
+        <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
+        <TableContainer>
+          <Form form={form} component={false}>
+            <Table
+              columns={mergedColumns}
+              rowKey={(item: IBook) => item.id}
+              components={{
+                body: {
+                  cell: EditableCell,
+                },
+              }}
+              bordered
+              dataSource={bookList}
+              rowClassName="editable-row"
+              pagination={{
+                onChange: cancel,
+              }}
+              loading={loading}
+            />
+          </Form>
+        </TableContainer>
+      </ContentWrapper>
+    </div>
   );
 };
 
