@@ -25,12 +25,18 @@ const boxStyle: React.CSSProperties = {
 type GetBooksResponse = IBook[];
 
 const Root = () => {
+  const token = localStorage.getItem('token');
   const [form] = Form.useForm();
   const [bookList, setBookList] = useState<undefined | IBook[]>(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<AxiosError>();
   const [editingKey, setEditingKey] = useState('');
   const [messageApi, contextHolder] = message.useMessage();
+
+  const instance = axios.create({
+    baseURL: 'http://localhost:5000/',
+    headers: {'gfg_token_header_key': token}
+  });
 
   const showSuccessMessage = (content: string) => {
     messageApi.open({
@@ -42,7 +48,7 @@ const Root = () => {
   const isEditing = (record: IBook) => record.id.toString() === editingKey;
 
   const onFinish = (values: IBook) => {
-    axios.post<IBook>('http://localhost:5000/book', values).then((res) =>
+    instance.post<IBook>('book', values).then((res) =>
       setBookList((prevState) => {
         if (prevState) {
           showSuccessMessage('Запись успешно добавлена!');
@@ -68,7 +74,7 @@ const Root = () => {
 
   const deleteRecord = async (item: IBook) => {
     try {
-      await axios.delete('http://localhost:5000/book/' + item.id);
+      await instance.delete('book/' + item.id);
       const newData = bookList?.length ? [...bookList] : [];
       const index = newData.findIndex((newItem) => item.id === newItem.id);
       newData.splice(index, 1);
@@ -86,7 +92,7 @@ const Root = () => {
       if (index > -1) {
         const item = newData[index];
 
-        await axios.put(`http://localhost:5000/book/${item.id}`, {
+        await instance.put(`book/${item.id}`, {
           ...item,
           ...row,
         });
@@ -182,8 +188,8 @@ const Root = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get<GetBooksResponse>('http://localhost:5000/book')
+    instance
+      .get<GetBooksResponse>('book')
       .then((res) => {
         setBookList(res.data);
         setLoading(false);

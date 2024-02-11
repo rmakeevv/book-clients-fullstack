@@ -1,4 +1,4 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, InputNumber } from 'antd';
 import React from 'react';
 import { IBook } from 'types';
 
@@ -36,9 +36,9 @@ const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
       <Form.Item<FieldType>
         label="Год"
         name="year"
-        rules={[{ required: true, message: 'Пожалуйста, введите год!' }]}
+        rules={[{ required: true, message: 'Пожалуйста, введите год!',  type: 'number'}]}
       >
-        <Input />
+        <InputNumber />
       </Form.Item>
       <Form.Item<FieldType>
         label="Жанр"

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
@@ -13,10 +14,14 @@ type FieldType = {
 };
 
 function Auth() {
+  const navigate = useNavigate();
+
   const onFinish = async (values: any) => {
     try {
       const token = await axios.post('http://localhost:5000/user/auth', values);
       console.log(token);
+      navigate('/')
+      localStorage.setItem('token', token.data);
       
     } catch (e) {
       console.log(e);
