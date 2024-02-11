@@ -16,13 +16,6 @@ import {
 } from '@ant-design/icons';
 import Header from 'components/Header';
 
-const boxStyle: React.CSSProperties = {
-  width: '100%',
-  height: 120,
-  borderRadius: 6,
-  border: '1px solid #40a9ff',
-};
-
 type GetBooksResponse = IBook[];
 
 const Root = () => {
@@ -224,7 +217,7 @@ const Root = () => {
 
   if (error)
     return (
-      <Flex align={'center'} justify={'center'} style={boxStyle} vertical>
+      <Flex align={'center'} justify={'center'} vertical>
         <p>{error.message}</p>
         <span>Не удалось загрузить данные!</span>
       </Flex>
