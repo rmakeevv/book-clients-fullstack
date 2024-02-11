@@ -39,6 +39,7 @@ Password: 1234
 
 Установка и запуск:
 ```
+cd frontend
 npm i
 npm start
 ```
