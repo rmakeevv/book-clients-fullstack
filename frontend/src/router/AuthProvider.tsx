@@ -25,12 +25,7 @@ export default function AuthProvider() {
     }
   }, []);
 
-  if (!loading)
-    return (
-      <div>
-        <Outlet />
-      </div>
-    );
+  if (!loading) return <Outlet />;
 
   return <></>;
 }
