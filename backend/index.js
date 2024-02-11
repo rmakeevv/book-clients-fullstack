@@ -34,7 +34,6 @@ app.use('/book', function (req, res, next) {
   } catch (error) {
     return res.status(401).send(error);
   }
-
 });
 
 app.post('/book', addNewBook);
@@ -53,6 +52,24 @@ app.post('/user/generateToken', (req, res) => {
   const token = jwt.sign(data, jwtSecretKey);
 
   res.send(token);
+});
+
+app.post('/user/auth', (req, res) => {
+  const { password, username } = req.body;
+
+  if (password === '1234' && username === 'admin') {
+    let jwtSecretKey = process.env.JWT_SECRET_KEY;
+    let data = {
+      time: Date(),
+      userId: 12,
+    };
+
+    const token = jwt.sign(data, jwtSecretKey);
+
+    res.send(token);
+  } else {
+    res.status(401).send('No pass');
+  }
 });
 
 app.get('/user/validateToken', (req, res) => {

@@ -183,7 +183,7 @@ const Root = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get<GetBooksResponse>('http://localhost:5000/books')
+      .get<GetBooksResponse>('http://localhost:5000/book')
       .then((res) => {
         setBookList(res.data);
         setLoading(false);

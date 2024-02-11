@@ -1,9 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
-
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
+import axios from 'axios';
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
@@ -16,8 +13,25 @@ type FieldType = {
 };
 
 function Auth() {
+  const onFinish = async (values: any) => {
+    try {
+      const token = await axios.post('http://localhost:5000/user/auth', values);
+      console.log(token);
+      
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
-    <div style={{display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center'}}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        height: '100vh',
+        alignItems: 'center',
+      }}
+    >
       <Form
         name="basic"
         labelCol={{ span: 8 }}
