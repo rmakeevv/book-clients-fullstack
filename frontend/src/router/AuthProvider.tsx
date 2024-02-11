@@ -10,15 +10,18 @@ export default function AuthProvider() {
     const localToken = localStorage.getItem('token');
     if (localToken) {
       axios
-        .get('http://localhost:5000/user/validateToken', {headers : {gfg_token_header_key: localToken}
-          
+        .get('http://localhost:5000/user/validateToken', {
+          headers: { gfg_token_header_key: localToken },
         })
         .then(() => navigate('/'))
-        .catch(() => navigate('/auth'))
+        .catch(() => {
+          localStorage.clear();
+          navigate('/auth');
+        })
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
-      navigate('/auth')
+      navigate('/auth');
     }
   }, []);
 
