@@ -37,16 +37,15 @@ function Auth() {
     >
       <Form
         name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ width: '600px' }}
-        initialValues={{ remember: true }}
+       
+        style={{ width: '400px' }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        layout='vertical'
       >
         <Form.Item<FieldType>
-          label="Username"
+          label="Имя пользователя"
           name="username"
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
@@ -54,16 +53,16 @@ function Auth() {
         </Form.Item>
 
         <Form.Item<FieldType>
-          label="Password"
+          label="Пароль"
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
           <Input.Password />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Form.Item >
           <Button type="primary" htmlType="submit">
-            Submit
+            Войти
           </Button>
         </Form.Item>
       </Form>
