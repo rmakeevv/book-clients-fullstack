@@ -65,7 +65,7 @@ const Root = () => {
   };
 
   const edit = (record: Partial<IBook>) => {
-    form.setFieldsValue({ name: '', age: '', address: '', ...record });
+    form.setFieldsValue({ ...record });
     setEditingKey(record.id ? record.id.toString() : ' ');
   };
 
@@ -128,6 +128,11 @@ const Root = () => {
     {
       title: 'Год',
       dataIndex: 'year',
+      editable: true,
+    },
+    {
+      title: 'Количество',
+      dataIndex: 'instock',
       editable: true,
     },
     {
@@ -206,7 +211,10 @@ const Root = () => {
       ...col,
       onCell: (record: IBook) => ({
         record,
-        inputType: col.dataIndex === 'year' ? 'number' : 'text',
+        inputType:
+          col.dataIndex === 'year' || col.dataIndex === 'instock'
+            ? 'number'
+            : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -227,7 +235,7 @@ const Root = () => {
       <Header />
       <ContentWrapper>
         {contextHolder}
-        <div style={{padding: '60px 20px' }}>
+        <div style={{ padding: '60px 20px' }}>
           <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
         </div>
 

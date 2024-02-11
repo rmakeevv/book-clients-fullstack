@@ -31,10 +31,10 @@ export const deleteOneBook = async (req, res) => {
 export const editOneBook = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const { name, year, genre, author } = req.body;
+    const { name, year, genre, author, instock } = req.body;
     const text =
-      'UPDATE books SET name = $1, author = $2, year = $3, genre = $4 WHERE id = $5';
-    await pool.query(text, [name, author, year, genre, id]);
+      'UPDATE books SET name = $1, author = $2, year = $3, genre = $4, instock = $5 WHERE id = $6';
+    await pool.query(text, [name, author, year, genre, instock, id]);
     res.sendStatus(200);
   } catch (e) {
     console.warn(e.message);
