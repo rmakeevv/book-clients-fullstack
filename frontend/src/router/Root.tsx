@@ -148,7 +148,6 @@ const Root = () => {
       dataIndex: 'author',
     },
     {
-      title: 'Действия',
       width: '130px',
       dataIndex: 'operation',
       render: (_: any, record: IBook) => {
@@ -236,7 +235,13 @@ const Root = () => {
       <Header />
       <ContentWrapper>
         {contextHolder}
-        <div style={{ padding: '65px 20px', boxSizing: 'border-box' }}>
+        <div
+          style={{
+            padding: '65px 20px',
+            boxSizing: 'border-box',
+            borderRight: '1px solid #d9d9d9',
+          }}
+        >
           <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
         </div>
 
