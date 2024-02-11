@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -16,14 +16,16 @@ type FieldType = {
 
 function Auth() {
   const navigate = useNavigate();
+  const [isError, setIsError] = useState(false);
 
   const onFinish = async (values: any) => {
     try {
       const token = await axios.post('http://localhost:5000/user/auth', values);
-      console.log(token);
+
       navigate('/');
       localStorage.setItem('token', token.data);
     } catch (e) {
+      setIsError(true);
       console.log(e);
     }
   };
@@ -56,7 +58,7 @@ function Auth() {
           <Form.Item<FieldType>
             label="Имя пользователя"
             name="username"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Пожалуйста, укажите логин!' }]}
           >
             <Input />
           </Form.Item>
@@ -64,17 +66,24 @@ function Auth() {
           <Form.Item<FieldType>
             label="Пароль"
             name="password"
-            rules={[{ required: true, message: 'Please input your password!' }]}
+            rules={[{ required: true, message: 'Пожалуйста, укажите пароль!' }]}
           >
             <Input.Password />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" size="middle">
               Войти
             </Button>
           </Form.Item>
         </Form>
+        {isError && (
+          <span
+            style={{ color: '#ff7875', fontSize: '14px', fontWeight: '300' }}
+          >
+            Пароль неверный!
+          </span>
+        )}
       </div>
     </div>
   );
