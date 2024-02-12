@@ -111,7 +111,6 @@ const Root = () => {
     {
       title: 'ID',
       dataIndex: 'id',
-
       render: (text: string) => <a>{text}</a>,
     },
     {
