@@ -2,6 +2,7 @@ import {
   ContentWrapper,
   CreateForm,
   EditableCell,
+  Header,
   TableContainer,
 } from 'components';
 import React, { useEffect, useState } from 'react';
@@ -14,7 +15,6 @@ import {
   RollbackOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
-import Header from 'components/Header';
 
 type GetBooksResponse = IBook[];
 
