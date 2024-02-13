@@ -15,6 +15,7 @@ import {
   RollbackOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
+import UseLogOut from 'components/hooks/UseLogOut';
 
 type GetBooksResponse = IBook[];
 
@@ -26,6 +27,8 @@ const Root = () => {
   const [error, setError] = useState<AxiosError>();
   const [editingKey, setEditingKey] = useState('');
   const [messageApi, contextHolder] = message.useMessage();
+
+  const logOut = UseLogOut();
 
   const instance = axios.create({
     baseURL: 'http://localhost:5000/',
@@ -224,7 +227,7 @@ const Root = () => {
 
   return (
     <div>
-      <Header />
+      <Header logOut={logOut} />
       <ContentWrapper>
         {contextHolder}
 

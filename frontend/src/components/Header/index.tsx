@@ -2,15 +2,12 @@ import React from 'react';
 import styles from './index.module.css';
 import { AliwangwangOutlined, PoweroffOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
-import { useNavigate } from 'react-router-dom';
 
-export default function Header() {
-  const navigate = useNavigate();
-  const logOut = () => {
-    localStorage.clear();
-    navigate('/auth');
-  };
+interface IHeader {
+  logOut: () => void;
+}
 
+export default function Header({ logOut }: IHeader) {
   return (
     <div className={styles.container}>
       <Space>
