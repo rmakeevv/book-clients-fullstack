@@ -15,7 +15,7 @@ import {
   RollbackOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
-import UseLogOut from 'components/hooks/UseLogOut';
+import UseLogOut from 'hooks/UseLogOut';
 
 type GetBooksResponse = IBook[];
 
