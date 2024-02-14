@@ -1,12 +1,6 @@
-import {
-  ContentWrapper,
-  CreateForm,
-  EditableCell,
-  Header,
-  TableContainer,
-} from 'components';
+import { ContentWrapper, CreateForm, EditableCell, Header } from 'components';
 import React, { useEffect, useState } from 'react';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { Button, Flex, Form, message, Popconfirm, Space, Table } from 'antd';
 import { IBook } from 'types';
 import {
@@ -16,11 +10,14 @@ import {
   SaveOutlined,
 } from '@ant-design/icons';
 import UseLogOut from 'hooks/UseLogOut';
-
-type GetBooksResponse = IBook[];
+import {
+  createOneBook,
+  deleteOneBook,
+  editOneBook,
+  getAllBooks,
+} from 'services';
 
 const Root = () => {
-  const token = localStorage.getItem('token');
   const [form] = Form.useForm();
   const [bookList, setBookList] = useState<undefined | IBook[]>(undefined);
   const [loading, setLoading] = useState(false);
@@ -29,11 +26,6 @@ const Root = () => {
   const [messageApi, contextHolder] = message.useMessage();
 
   const logOut = UseLogOut();
-
-  const instance = axios.create({
-    baseURL: 'http://localhost:5000/',
-    headers: { gfg_token_header_key: token },
-  });
 
   const showSuccessMessage = (content: string) => {
     messageApi.open({
@@ -44,16 +36,17 @@ const Root = () => {
 
   const isEditing = (record: IBook) => record.id.toString() === editingKey;
 
-  const onFinish = (values: IBook) => {
-    instance.post<IBook>('book', values).then((res) =>
+  const onFinish = async (values: IBook) => {
+    const data = await createOneBook(values);
+
+    data &&
       setBookList((prevState) => {
         if (prevState) {
           showSuccessMessage('Запись успешно добавлена!');
-          return [res.data, ...prevState];
+          return [data, ...prevState];
         }
         return [];
-      })
-    );
+      });
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -71,7 +64,7 @@ const Root = () => {
 
   const deleteRecord = async (item: IBook) => {
     try {
-      await instance.delete('book/' + item.id);
+      await deleteOneBook(item.id);
       const newData = bookList?.length ? [...bookList] : [];
       const index = newData.findIndex((newItem) => item.id === newItem.id);
       newData.splice(index, 1);
@@ -89,10 +82,8 @@ const Root = () => {
       if (index > -1) {
         const item = newData[index];
 
-        await instance.put(`book/${item.id}`, {
-          ...item,
-          ...row,
-        });
+        await editOneBook({ ...item, ...row });
+
         newData.splice(index, 1, {
           ...item,
           ...row,
@@ -189,10 +180,9 @@ const Root = () => {
 
   useEffect(() => {
     setLoading(true);
-    instance
-      .get<GetBooksResponse>('book')
-      .then((res) => {
-        setBookList(res.data);
+    getAllBooks()
+      .then((data) => {
+        setBookList(data);
         setLoading(false);
       })
       .catch((error) => setError(error));
@@ -233,7 +223,7 @@ const Root = () => {
 
         <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
 
-        <TableContainer>
+        <div style={{ padding: '20px ' }}>
           <Form form={form} component={false}>
             <Table
               columns={mergedColumns}
@@ -252,7 +242,7 @@ const Root = () => {
               loading={loading}
             />
           </Form>
-        </TableContainer>
+        </div>
       </ContentWrapper>
     </div>
   );
