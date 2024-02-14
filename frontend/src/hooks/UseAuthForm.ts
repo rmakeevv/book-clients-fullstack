@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "router/AuthProvider";
 import { instance } from "services";
 
 type FieldType = {
@@ -7,7 +8,8 @@ type FieldType = {
   password?: string;
 };
 
-export const UseAuthForm = (setIsLogged: (value: boolean) => void) => {
+export const UseAuthForm = () => {
+  const { setIsLogged } = useContext(UserContext);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
