@@ -1,5 +1,5 @@
 import { ContentWrapper, CreateForm, EditableCell, Header } from 'components';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AxiosError } from 'axios';
 import { Button, Flex, Form, message, Popconfirm, Space, Table } from 'antd';
 import { IBook } from 'types';
@@ -16,6 +16,7 @@ import {
   editOneBook,
   getAllBooks,
 } from 'services';
+import { UserContext } from './AuthProvider';
 
 const Root = () => {
   const [form] = Form.useForm();
@@ -24,8 +25,9 @@ const Root = () => {
   const [error, setError] = useState<AxiosError>();
   const [editingKey, setEditingKey] = useState('');
   const [messageApi, contextHolder] = message.useMessage();
+  const { setIsLogged } = useContext(UserContext);
 
-  const logOut = UseLogOut();
+  const logOut = UseLogOut(setIsLogged);
 
   const showSuccessMessage = (content: string) => {
     messageApi.open({

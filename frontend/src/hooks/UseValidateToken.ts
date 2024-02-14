@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { instance } from 'services';
 
-export const UseAuth = () => {
+export const UseValidateToken = (isLogged: boolean, setIsLogged: (_value: boolean) => void) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -12,17 +12,18 @@ export const UseAuth = () => {
       instance.defaults.headers.common['gfg_token_header_key'] = localToken;
       instance
         .get('/user/validateToken')
-        .then(() => navigate('/'))
+        .then(() => {
+          setIsLogged(true)
+        })
         .catch(() => {
           localStorage.clear();
-          navigate('/auth');
         })
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
       navigate('/auth');
     }
-  }, []);
+  }, [isLogged]);
 
   return loading;
 };

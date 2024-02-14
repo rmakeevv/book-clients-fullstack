@@ -1,10 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-
-export default function UseLogOut() {
-  const navigate = useNavigate();
+export default function UseLogOut(setIsLogged: (value: boolean) => void) {
   const logOut = () => {
     localStorage.clear();
-    navigate('/auth');
+    setIsLogged(false);
   };
   return logOut;
 }
