@@ -45,7 +45,7 @@ const Root = () => {
           showSuccessMessage('Запись успешно добавлена!');
           return [data, ...prevState];
         }
-        return [];
+        return [data];
       });
   };
 
