@@ -13,16 +13,7 @@ export default function Header({ logOut }: IHeader) {
       <Space>
         <AliwangwangOutlined className={styles.logo} />
 
-        <span
-          style={{
-            fontSize: '26px',
-            fontWeight: '600',
-            color: 'white',
-            letterSpacing: '-1px',
-          }}
-        >
-          booklist
-        </span>
+        <span className={styles.logo__text}>booklist</span>
       </Space>
       <Button onClick={logOut} icon={<PoweroffOutlined />}>
         Выход
