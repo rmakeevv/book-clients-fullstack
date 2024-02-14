@@ -15,28 +15,15 @@ function Auth() {
 
   return (
     <div className={styles.page}>
-      <div style={{ paddingBottom: '10%' }}>
+      <div>
         <div className={styles.logo__container}>
           <AliwangwangOutlined className={styles.logo} />
 
-          <span
-            style={{
-              fontSize: '32px',
-              fontWeight: '600',
-              color: '#0958d9',
-              letterSpacing: '-1px',
-            }}
-          >
-            booklist
-          </span>
+          <span className={styles.logo__text}>booklist</span>
         </div>
         <AuthForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
         {isError && (
-          <span
-            style={{ color: '#ff7875', fontSize: '14px', fontWeight: '300' }}
-          >
-            Пароль неверный!
-          </span>
+          <span className={styles.error}>Пароль и(или) логин неверный!</span>
         )}
       </div>
     </div>
