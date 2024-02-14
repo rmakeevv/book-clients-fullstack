@@ -223,7 +223,7 @@ const Root = () => {
 
         <CreateForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
 
-        <div style={{ padding: '20px ', flexGrow: 1 }}>
+        <div className={'table-container'}>
           <Form form={form} component={false}>
             <Table
               columns={mergedColumns}

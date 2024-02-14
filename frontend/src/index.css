@@ -10,3 +10,8 @@ body {
   top: 100%;
   font-size: 12px;
 }
+
+.table-container {
+  padding: 20px;
+  flex-grow: 1;
+}
