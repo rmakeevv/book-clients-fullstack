@@ -1,16 +1,6 @@
 import { Form, Input, InputNumber } from 'antd';
-import React from 'react';
-import { IBook } from 'types';
-
-interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
-  editing: boolean;
-  dataIndex: string;
-  title: string;
-  inputType: 'number' | 'text';
-  record: IBook;
-  index: number;
-  children: React.ReactNode;
-}
+import React, { useMemo } from 'react';
+import { EditableCellProps } from './types';
 
 const EditableCell: React.FC<EditableCellProps> = ({
   editing,
@@ -22,7 +12,10 @@ const EditableCell: React.FC<EditableCellProps> = ({
   children,
   ...restProps
 }) => {
-  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+  const inputNode = useMemo(
+    () => (inputType === 'number' ? <InputNumber /> : <Input />),
+    [inputType]
+  );
 
   return (
     <td {...restProps}>

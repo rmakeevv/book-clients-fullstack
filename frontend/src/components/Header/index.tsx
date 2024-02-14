@@ -2,10 +2,7 @@ import React from 'react';
 import styles from './index.module.css';
 import { AliwangwangOutlined, PoweroffOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
-
-interface IHeader {
-  logOut: () => void;
-}
+import { IHeader } from './types';
 
 export default function Header({ logOut }: IHeader) {
   return (
