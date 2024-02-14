@@ -1,14 +1,11 @@
 import { Button, Form, Input, InputNumber, Space } from 'antd';
-import React, { useState } from 'react';
 import styles from './index.module.css';
 import { FieldType, ICreateForm } from './types';
+import { UseToggle } from 'hooks/UseToggle';
+import React from 'react';
 
 const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
-  const [open, setOpen] = useState(false);
-
-  const toggle = () => {
-    setOpen((prevState) => !prevState);
-  };
+  const { open, toggle } = UseToggle();
 
   return (
     <div className={open ? styles.fade__in : styles.container}>
