@@ -21,7 +21,7 @@ export const UseValidateToken = (isLogged: boolean, setIsLogged: (_value: boolea
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
-      navigate('/auth');
+      navigate('/auth', {replace: true});
     }
   }, [isLogged]);
 
