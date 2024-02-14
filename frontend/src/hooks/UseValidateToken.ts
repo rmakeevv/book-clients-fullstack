@@ -17,6 +17,7 @@ export const UseValidateToken = (isLogged: boolean, setIsLogged: (_value: boolea
         })
         .catch(() => {
           localStorage.clear();
+          navigate('/auth')
         })
         .finally(() => setLoading(false));
     } else {
