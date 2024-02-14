@@ -1,19 +1,7 @@
 import { Button, Form, Input, InputNumber, Space } from 'antd';
 import React, { useState } from 'react';
-import { IBook } from 'types';
 import styles from './index.module.css';
-
-type FieldType = {
-  name?: string;
-  year?: string;
-  genre?: string;
-  author?: string;
-};
-
-interface ICreateForm {
-  onFinish: (values: IBook) => void;
-  onFinishFailed: (errorInfo: any) => void;
-}
+import { FieldType, ICreateForm } from './types';
 
 const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
   const [open, setOpen] = useState(false);
@@ -28,7 +16,7 @@ const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
 
       {open && (
         <>
-          <Space >
+          <Space>
             Добавить книгу <Button onClick={toggle}>Скрыть</Button>
           </Space>
 
