@@ -10,12 +10,9 @@ import {
   SaveOutlined,
 } from '@ant-design/icons';
 import UseLogOut from 'hooks/UseLogOut';
-import {
-  createOneBook,
-  deleteOneBook,
-  editOneBook,
-  getAllBooks,
-} from 'services';
+import { editOneBook, getAllBooks } from 'services';
+import { UseDeleteItem } from 'hooks/UseDeleteItem';
+import { UseFinishCreate } from 'hooks/UseFinishCreate';
 
 const Root = () => {
   const [form] = Form.useForm();
@@ -25,6 +22,8 @@ const Root = () => {
   const [editingKey, setEditingKey] = useState('');
   const [messageApi, contextHolder] = message.useMessage();
 
+  const deleteRecord = UseDeleteItem(bookList, setBookList);
+
   const logOut = UseLogOut();
 
   const showSuccessMessage = (content: string) => {
@@ -33,21 +32,9 @@ const Root = () => {
       content,
     });
   };
+  const onFinish = UseFinishCreate(setBookList, showSuccessMessage);
 
   const isEditing = (record: IBook) => record.id.toString() === editingKey;
-
-  const onFinish = async (values: IBook) => {
-    const data = await createOneBook(values);
-
-    data &&
-      setBookList((prevState) => {
-        if (prevState) {
-          showSuccessMessage('Запись успешно добавлена!');
-          return [data, ...prevState];
-        }
-        return [data];
-      });
-  };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
@@ -60,18 +47,6 @@ const Root = () => {
 
   const cancel = () => {
     setEditingKey('');
-  };
-
-  const deleteRecord = async (item: IBook) => {
-    try {
-      await deleteOneBook(item.id);
-      const newData = bookList?.length ? [...bookList] : [];
-      const index = newData.findIndex((newItem) => item.id === newItem.id);
-      newData.splice(index, 1);
-      setBookList(newData);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   const save = async (key: React.Key) => {
