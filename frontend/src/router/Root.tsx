@@ -1,5 +1,5 @@
 import { ContentWrapper, CreateForm, EditableCell, Header } from 'components';
-import UseGetData from 'hooks/UseGetData';
+import { UseDeleteItem, UseFinishCreate, UseGetData, UseLogOut } from 'hooks';
 import React, { useState } from 'react';
 import { Button, Flex, Form, message, Popconfirm, Space, Table } from 'antd';
 import { IBook } from 'types';
@@ -9,10 +9,7 @@ import {
   RollbackOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
-import UseLogOut from 'hooks/UseLogOut';
 import { editOneBook } from 'services';
-import { UseDeleteItem } from 'hooks/UseDeleteItem';
-import { UseFinishCreate } from 'hooks/UseFinishCreate';
 
 const Root = () => {
   const [form] = Form.useForm();
