@@ -1,9 +1,9 @@
 import { deleteOneBook } from 'services';
-import { IBook } from 'types';
+import { BookList, IBook, SetBookList } from 'types';
 
 type UseDeleteItemType = (
-  bookList: IBook[] | undefined,
-  setBookList: (values: IBook[]) => void
+  bookList: BookList,
+  setBookList: SetBookList
 ) => (item: IBook) => Promise<void>;
 
 const UseDeleteItem: UseDeleteItemType = (bookList, setBookList) => {

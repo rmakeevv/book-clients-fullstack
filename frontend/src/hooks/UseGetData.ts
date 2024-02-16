@@ -1,10 +1,9 @@
 import { AxiosError } from 'axios';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllBooks } from 'services';
-import { IBook } from 'types';
-type UseGetDataArg = Dispatch<SetStateAction<IBook[] | undefined>>;
+import { SetBookList } from 'types';
 
-export default function UseGetData(setBookList: UseGetDataArg) {
+export default function UseGetData(setBookList: SetBookList) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<AxiosError>();
 

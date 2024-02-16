@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import { UserContext } from "router/AuthProvider";
+import { useContext } from 'react';
+import { UserContext } from 'router/AuthProvider';
 
 export default function UseLogOut() {
-  const {setIsLogged} = useContext(UserContext);
-  const logOut = () => {
+  const { setIsLogged } = useContext(UserContext);
+  return () => {
     localStorage.clear();
     setIsLogged(false);
   };
-  return logOut;
 }

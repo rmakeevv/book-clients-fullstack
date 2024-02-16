@@ -1,19 +1,23 @@
 import { ContentWrapper, CreateForm, EditableCell, Header } from 'components';
-import { UseDeleteItem, UseFinishCreate, UseGetData, UseLogOut } from 'hooks';
+import {
+  UseDeleteItem,
+  UseFinishCreate,
+  UseGetData,
+  UseLogOut,
+  UseSaveRow,
+} from 'hooks';
 import React, { useState } from 'react';
 import { Button, Flex, Form, message, Popconfirm, Space, Table } from 'antd';
-import { IBook } from 'types';
+import { BookList, IBook } from 'types';
 import {
   DeleteOutlined,
   EditOutlined,
   RollbackOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
-import { editOneBook } from 'services';
 
 const Root = () => {
-  const [form] = Form.useForm();
-  const [bookList, setBookList] = useState<undefined | IBook[]>(undefined);
+  const [bookList, setBookList] = useState<BookList>();
   const [editingKey, setEditingKey] = useState('');
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -44,32 +48,7 @@ const Root = () => {
     setEditingKey('');
   };
 
-  const save = async (key: React.Key) => {
-    try {
-      const row = (await form.validateFields()) as IBook;
-      const newData = bookList?.length ? [...bookList] : [];
-      const index = newData.findIndex((item) => key === item.id);
-      if (index > -1) {
-        const item = newData[index];
-
-        await editOneBook({ ...item, ...row });
-
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
-        });
-        setBookList(newData);
-
-        setEditingKey('');
-      } else {
-        newData.push(row);
-        setBookList(newData);
-        setEditingKey('');
-      }
-    } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
-    }
-  };
+  const { save, form } = UseSaveRow(setBookList, setEditingKey, bookList);
 
   const columns = [
     {

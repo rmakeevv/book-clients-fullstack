@@ -1,9 +1,8 @@
-import { Dispatch, SetStateAction } from 'react';
 import { createOneBook } from 'services';
-import { IBook } from 'types';
+import { IBook, SetBookList } from 'types';
 
 type UseFinishCreateType = (
-  setBookList: Dispatch<SetStateAction<IBook[] | undefined>>,
+  setBookList: SetBookList,
   showSuccessMessage: (message: string) => void
 ) => (item: IBook) => Promise<void>;
 
