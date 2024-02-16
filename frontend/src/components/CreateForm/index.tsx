@@ -1,7 +1,7 @@
 import { Button, Form, Input, InputNumber, Space } from 'antd';
 import styles from './index.module.css';
 import { FieldType, ICreateForm } from './types';
-import { UseToggle } from 'hooks/UseToggle';
+import { UseToggle } from 'hooks';
 import React from 'react';
 
 const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {

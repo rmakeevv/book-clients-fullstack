@@ -7,7 +7,6 @@ export const instance = axios.create({
   baseURL,
 });
 
-
 export const getAllBooks = async () => {
   try {
     const res = await instance.get<IBook[]>('book');

@@ -1,29 +1,9 @@
-.logo svg {
-  width: 3rem;
-  height: 3rem;
-  color: #0958d9;
-}
-
-.logo__container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-}
-
 .page {
   display: flex;
   justify-content: center;
   align-items: center;
   background: #fafafa;
   height: 100vh;
-}
-
-.logo__text {
-  font-size: 32px;
-  font-weight: 600;
-  color: #0958d9;
-  letter-spacing: -1px;
 }
 
 .error {

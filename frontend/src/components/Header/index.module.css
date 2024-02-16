@@ -11,16 +11,3 @@
   box-sizing: border-box;
   align-items: stretch;
 }
-
-.logo svg{
-  width: 2rem;
-  height: 2rem;
-  color: white;
-}
-
-.logo__text {
-  font-size: 26px;
-  font-weight: 600;
-  color: white;
-  letter-spacing: -1px;
-}
