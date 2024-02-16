@@ -1,6 +1,6 @@
 import { ContentWrapper, CreateForm, EditableCell, Header } from 'components';
-import React, { useEffect, useState } from 'react';
-import { AxiosError } from 'axios';
+import UseGetData from 'hooks/UseGetData';
+import React, { useState } from 'react';
 import { Button, Flex, Form, message, Popconfirm, Space, Table } from 'antd';
 import { IBook } from 'types';
 import {
@@ -10,15 +10,13 @@ import {
   SaveOutlined,
 } from '@ant-design/icons';
 import UseLogOut from 'hooks/UseLogOut';
-import { editOneBook, getAllBooks } from 'services';
+import { editOneBook } from 'services';
 import { UseDeleteItem } from 'hooks/UseDeleteItem';
 import { UseFinishCreate } from 'hooks/UseFinishCreate';
 
 const Root = () => {
   const [form] = Form.useForm();
   const [bookList, setBookList] = useState<undefined | IBook[]>(undefined);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<AxiosError>();
   const [editingKey, setEditingKey] = useState('');
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -153,15 +151,7 @@ const Root = () => {
     },
   ];
 
-  useEffect(() => {
-    setLoading(true);
-    getAllBooks()
-      .then((data) => {
-        setBookList(data);
-        setLoading(false);
-      })
-      .catch((error) => setError(error));
-  }, []);
+  const { loading, error } = UseGetData(setBookList);
 
   const mergedColumns = columns.map((col) => {
     if (!col.editable) {
