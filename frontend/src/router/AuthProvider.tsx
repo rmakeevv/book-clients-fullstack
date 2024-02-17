@@ -1,12 +1,13 @@
 import { UseValidateToken } from 'hooks/UseValidateToken';
 import { Outlet } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import { createContext } from 'react';
 
 export type UserContextType = {
   isLogged: boolean;
-  setIsLogged: (_value: boolean) => void;
+  // setIsLogged: (_value: boolean) => void;
+  setIsLogged: Dispatch<SetStateAction<boolean>>;
 };
 
 export const UserContext = createContext<UserContextType>({
