@@ -4,15 +4,14 @@ import { FieldType, ICreateForm } from './types';
 import { UseToggle } from 'hooks';
 import React, { useMemo } from 'react';
 
+const toggleClassname = (state: boolean) => (state ? 'fade__in' : 'container');
+
 const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
   const { open, toggle } = UseToggle();
-  const containerClassName = useMemo(
-    () => (open ? styles.fade__in : styles.container),
-    [open]
-  );
+  const containerClassName = useMemo(() => toggleClassname(open), [open]);
 
   return (
-    <div className={containerClassName}>
+    <div className={styles[containerClassName]}>
       {!open && <Button onClick={toggle}>Добавить</Button>}
 
       {open && (
