@@ -57,7 +57,10 @@ app.post('/user/generateToken', (req, res) => {
 app.post('/user/auth', (req, res) => {
     const { password, username } = req.body;
 
-    if (password === '1234' && username === 'admin') {
+    if (
+        password === process.env.APP_SU_PASSWORD &&
+        username === process.env.APP_SU_NAME
+    ) {
         let jwtSecretKey = process.env.JWT_SECRET_KEY;
         let data = {
             time: Date(),
