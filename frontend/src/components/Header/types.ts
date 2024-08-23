@@ -1,3 +1,3 @@
 export interface IHeader {
-  logOut: () => void;
+    logOut: () => void;
 }

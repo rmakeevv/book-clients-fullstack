@@ -44,7 +44,7 @@ const Root = () => {
         setEditingKey(record.id ? record.id.toString() : ' ');
     };
 
-    const cancel = () => {
+    const cancelEditing = () => {
         setEditingKey('');
     };
 
@@ -97,7 +97,7 @@ const Root = () => {
                         ></Button>
                         <Popconfirm
                             title="Уверены, что хотите отменить?"
-                            onConfirm={cancel}
+                            onConfirm={cancelEditing}
                         >
                             <Button
                                 size={'large'}
@@ -184,7 +184,7 @@ const Root = () => {
                             dataSource={bookList}
                             rowClassName="editable-row"
                             pagination={{
-                                onChange: cancel,
+                                onChange: cancelEditing,
                             }}
                             loading={loading}
                         />
