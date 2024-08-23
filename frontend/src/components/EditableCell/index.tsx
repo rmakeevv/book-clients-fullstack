@@ -2,7 +2,7 @@ import { Form, Input, InputNumber } from 'antd';
 import React, { useMemo } from 'react';
 import { EditableCellProps } from './types';
 
-const EditableCell: React.FC<EditableCellProps> = ({
+const EditableCell = ({
     editing,
     dataIndex,
     title,
@@ -11,7 +11,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
     index,
     children,
     ...restProps
-}) => {
+}: EditableCellProps) => {
     const inputNode = useMemo(
         () => (inputType === 'number' ? <InputNumber /> : <Input />),
         [inputType]
