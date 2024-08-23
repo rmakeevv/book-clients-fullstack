@@ -1,8 +1,13 @@
 import { pool } from '../db.js';
 
 export const getAllBooks = async (req, res) => {
-  const data = await pool.query('SELECT * FROM books ORDER BY id DESC;');
-  res.send(data.rows);
+  try {
+    const data = await pool.query('SELECT * FROM books ORDER BY id DESC;');
+    res.send(data.rows);
+  } catch (e) {
+    console.warn(e);
+    return res.status(500).send('Internal Server Error');
+  }
 };
 
 export const addNewBook = async (req, res) => {
@@ -14,6 +19,7 @@ export const addNewBook = async (req, res) => {
     res.send(result.rows[0]);
   } catch (e) {
     console.warn(e.message);
+    return res.status(500).send('Internal Server Error');
   }
 };
 
@@ -25,6 +31,7 @@ export const deleteOneBook = async (req, res) => {
     res.sendStatus(200);
   } catch (e) {
     console.warn(e.message);
+    return res.status(500).send('Internal Server Error');
   }
 };
 
@@ -38,5 +45,6 @@ export const editOneBook = async (req, res) => {
     res.sendStatus(200);
   } catch (e) {
     console.warn(e.message);
+    return res.status(500).send('Internal Server Error');
   }
 };
