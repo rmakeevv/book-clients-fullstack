@@ -1,9 +1,9 @@
 import express from 'express';
 import {
-  addNewBook,
-  deleteOneBook,
-  editOneBook,
-  getAllBooks,
+    addNewBook,
+    deleteOneBook,
+    editOneBook,
+    getAllBooks,
 } from './controllers/index.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -19,21 +19,21 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/book', function (req, res, next) {
-  let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-  let jwtSecretKey = process.env.JWT_SECRET_KEY;
+    let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
+    let jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-  try {
-    const token = req.header(tokenHeaderKey);
+    try {
+        const token = req.header(tokenHeaderKey);
 
-    const verified = jwt.verify(token, jwtSecretKey);
-    if (verified) {
-      return next();
-    } else {
-      return res.status(401).send(error);
+        const verified = jwt.verify(token, jwtSecretKey);
+        if (verified) {
+            return next();
+        } else {
+            return res.status(401).send(error);
+        }
+    } catch (error) {
+        return res.status(401).send(error);
     }
-  } catch (error) {
-    return res.status(401).send(error);
-  }
 });
 
 app.post('/book', addNewBook);
@@ -43,57 +43,57 @@ app.put('/book/:id', editOneBook);
 app.get('/book', getAllBooks);
 
 app.post('/user/generateToken', (req, res) => {
-  let jwtSecretKey = process.env.JWT_SECRET_KEY;
-  let data = {
-    time: Date(),
-    userId: 12,
-  };
-
-  const token = jwt.sign(data, jwtSecretKey);
-
-  res.send(token);
-});
-
-app.post('/user/auth', (req, res) => {
-  const { password, username } = req.body;
-
-  if (password === '1234' && username === 'admin') {
     let jwtSecretKey = process.env.JWT_SECRET_KEY;
     let data = {
-      time: Date(),
-      userId: 12,
+        time: Date(),
+        userId: 12,
     };
 
     const token = jwt.sign(data, jwtSecretKey);
 
     res.send(token);
-  } else {
-    res.status(401).send('No pass');
-  }
+});
+
+app.post('/user/auth', (req, res) => {
+    const { password, username } = req.body;
+
+    if (password === '1234' && username === 'admin') {
+        let jwtSecretKey = process.env.JWT_SECRET_KEY;
+        let data = {
+            time: Date(),
+            userId: 12,
+        };
+
+        const token = jwt.sign(data, jwtSecretKey);
+
+        res.send(token);
+    } else {
+        res.status(401).send('No pass');
+    }
 });
 
 app.get('/user/validateToken', (req, res) => {
-  let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-  let jwtSecretKey = process.env.JWT_SECRET_KEY;
+    let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
+    let jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-  try {
-    const token = req.header(tokenHeaderKey);
+    try {
+        const token = req.header(tokenHeaderKey);
 
-    const verified = jwt.verify(token, jwtSecretKey);
-    if (verified) {
-      return res.send('Successfully Verified');
-    } else {
-      return res.status(401).send(error);
+        const verified = jwt.verify(token, jwtSecretKey);
+        if (verified) {
+            return res.send('Successfully Verified');
+        } else {
+            return res.status(401).send(error);
+        }
+    } catch (error) {
+        return res.status(401).send(error);
     }
-  } catch (error) {
-    return res.status(401).send(error);
-  }
 });
 
 try {
-  app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`);
-  });
+    app.listen(PORT, () => {
+        console.log(`Example app listening on port ${PORT}`);
+    });
 } catch (e) {
-  console.log(e);
+    console.log(e);
 }
