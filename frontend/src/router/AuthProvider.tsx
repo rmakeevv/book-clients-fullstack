@@ -12,9 +12,7 @@ export type UserContextType = {
 
 export const UserContext = createContext<UserContextType>({
     isLogged: false,
-    setIsLogged: (v) => {
-        v;
-    },
+    setIsLogged: (v) => v,
 });
 
 export default function AuthProvider() {
