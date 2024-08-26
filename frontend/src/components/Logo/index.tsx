@@ -4,24 +4,24 @@ import React, { useMemo } from 'react';
 import styles from './index.module.css';
 
 interface ILogo {
-  type: 'middle' | 'small';
+    type: 'middle' | 'small';
 }
 
 const LogoClassName = {
-  ['middle']: { icon: 'icon', text: 'text' },
-  ['small']: { icon: 'small__icon', text: 'small__text' },
+    ['middle']: { icon: 'icon', text: 'text' },
+    ['small']: { icon: 'small__icon', text: 'small__text' },
 };
 
 const Logo = ({ type = 'small' }: ILogo) => {
-  const classNameList = useMemo(() => LogoClassName[type], [type]);
+    const classNameList = useMemo(() => LogoClassName[type], [type]);
 
-  return (
-    <Space>
-      <AliwangwangOutlined className={styles[classNameList.icon]} />
+    return (
+        <Space>
+            <AliwangwangOutlined className={styles[classNameList.icon]} />
 
-      <span className={styles[classNameList.text]}>booklist</span>
-    </Space>
-  );
+            <span className={styles[classNameList.text]}>booklist</span>
+        </Space>
+    );
 };
 
 export default Logo;
