@@ -4,19 +4,19 @@ import { getAllBooks } from 'services';
 import { SetBookList } from 'types';
 
 export default function UseGetData(setBookList: SetBookList) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<AxiosError>();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<AxiosError>();
 
-  useEffect(() => {
-    setLoading(true);
-    getAllBooks()
-      .then((data) => {
-        setBookList(data);
-        setLoading(false);
-      })
+    useEffect(() => {
+        setLoading(true);
+        getAllBooks()
+            .then((data) => {
+                setBookList(data);
+                setLoading(false);
+            })
 
-      .catch((error) => setError(error));
-  }, []);
+            .catch((error) => setError(error));
+    }, []);
 
-  return { loading, error };
+    return { loading, error };
 }

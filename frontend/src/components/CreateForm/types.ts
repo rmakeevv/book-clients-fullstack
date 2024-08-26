@@ -1,13 +1,13 @@
-import { IBook } from "types";
+import { IBook } from 'types';
 
 export type FieldType = {
-  name?: string;
-  year?: string;
-  genre?: string;
-  author?: string;
+    name?: string;
+    year?: string;
+    genre?: string;
+    author?: string;
 };
 
 export interface ICreateForm {
-  onFinish: (values: IBook) => void;
-  onFinishFailed: (errorInfo: any) => void;
+    onFinish: (values: IBook) => void;
+    onFinishFailed: (errorInfo: any) => void;
 }

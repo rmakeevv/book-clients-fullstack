@@ -1,17 +1,17 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: sans-serif, 'SansSerif';
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif, 'SansSerif';
 }
 
 .editable-row .ant-form-item-explain {
-  position: absolute;
-  top: 100%;
-  font-size: 12px;
+    position: absolute;
+    top: 100%;
+    font-size: 12px;
 }
 
 .table-container {
-  padding: 20px;
-  flex-grow: 1;
+    padding: 20px;
+    flex-grow: 1;
 }
