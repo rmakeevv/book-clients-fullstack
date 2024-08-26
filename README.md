@@ -51,7 +51,24 @@ cd frontend
 npm i
 npm start
 ```
-Frontend не использует .env. Работает на 3000 порту и обращается в Backend на localhost:5000.
+Frontend использует .env 
+```dotenv
+REACT_APP_BASE_URL=http://localhost:5001
+```
 
+## 4. Docker compose БД ##
+
+Можно поднять базу с помощью docker-compose:
+```shell
+cd ./bd
+docker-compose up -d
+```
+
+Будет доступна админка adminer на
+[localhost:8080](http://localhost:8080)
+
+![adminer](./db/adminer-setup.png)
+
+пароль: dbpass
 
 
