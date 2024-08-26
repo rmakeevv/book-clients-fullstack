@@ -2,9 +2,9 @@ import { ContentWrapper, CreateForm, EditableCell, Header } from 'components';
 import {
     UseDeleteItem,
     UseFinishCreate,
-    UseGetData,
     UseLogOut,
     UseSaveRow,
+    UseGetAllBooksData,
 } from 'hooks';
 import React, { useState } from 'react';
 import { Button, Flex, Form, message, Popconfirm, Space, Table } from 'antd';
@@ -15,6 +15,7 @@ import {
     RollbackOutlined,
     SaveOutlined,
 } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const Root = () => {
     const [bookList, setBookList] = useState<BookList>();
@@ -54,7 +55,7 @@ const Root = () => {
         {
             title: 'ID',
             dataIndex: 'id',
-            render: (text: string) => <a>{text}</a>,
+            render: (id: string) => <Link to={'books/' + id}>{id}</Link>,
         },
         {
             title: 'Название',
@@ -130,7 +131,7 @@ const Root = () => {
         },
     ];
 
-    const { loading, error } = UseGetData(setBookList);
+    const { loading, error } = UseGetAllBooksData(setBookList);
 
     const mergedColumns = columns.map((col) => {
         if (!col.editable) {

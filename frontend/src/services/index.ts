@@ -16,6 +16,15 @@ export const getAllBooks = async () => {
     }
 };
 
+export const getOneBook = async (id: string) => {
+    try {
+        const res = await instance.get<IBook>('book/' + id);
+        return res.data;
+    } catch (e) {
+        console.warn(e);
+    }
+};
+
 export const createOneBook = async (values: IBook) => {
     try {
         const res = await instance.post<IBook>('book', values);

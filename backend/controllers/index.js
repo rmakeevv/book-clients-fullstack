@@ -10,6 +10,18 @@ export const getAllBooks = async (req, res) => {
     }
 };
 
+export const getOneBook = async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM books WHERE id = $1;', [
+            req.params.id,
+        ]);
+        res.send(result.rows[0]);
+    } catch (e) {
+        console.warn(e);
+        return res.status(500).send('Internal Server Error');
+    }
+};
+
 export const addNewBook = async (req, res) => {
     try {
         const { name, year, genre, author } = await req.body;

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { getAllBooks } from 'services';
 import { SetBookList } from 'types';
 
-export default function UseGetData(setBookList: SetBookList) {
+export default function UseGetAllBooksData(setBookList: SetBookList) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<AxiosError>();
 

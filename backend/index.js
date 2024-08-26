@@ -4,6 +4,7 @@ import {
     deleteOneBook,
     editOneBook,
     getAllBooks,
+    getOneBook,
 } from './controllers/index.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -41,6 +42,7 @@ app.delete('/book/:id', deleteOneBook);
 app.put('/book/:id', editOneBook);
 
 app.get('/book', getAllBooks);
+app.get('/book/:id', getOneBook);
 
 app.post('/user/generateToken', (req, res) => {
     let jwtSecretKey = process.env.JWT_SECRET_KEY;
