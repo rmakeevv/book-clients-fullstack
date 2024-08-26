@@ -15,6 +15,7 @@ CREATE TABLE "public"."books" (
 ) WITH (oids = false);
 
 INSERT INTO "books" ("name", "year", "genre", "author", "id", "instock") VALUES
-('My book',	2004,	'genre',	'author',	1,	5);
+('My book',	2004,	'genre',	'author',	1,	5),
+('Книга для детей',	2001,	'Книга',	'Я',	2,	NULL);
 
--- 2024-08-16 22:02:50.989551+00
+-- 2024-08-26 20:21:52.242494+00
