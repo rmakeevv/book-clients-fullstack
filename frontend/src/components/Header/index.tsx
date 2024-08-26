@@ -8,7 +8,7 @@ import { Logo } from 'components';
 export default function Header({ logOut }: IHeader) {
     return (
         <div className={styles.container}>
-            <Logo type={'small'} />
+            <Logo size={'small'} />
             <Button onClick={logOut} icon={<PoweroffOutlined />}>
                 Выход
             </Button>
