@@ -75,7 +75,7 @@ REACT_APP_BASE_URL=http://localhost:5001
 Можно поднять базу с помощью docker-compose:
 
 ```shell
-cd ./bd
+cd ./db
 docker-compose up -d
 ```
 
