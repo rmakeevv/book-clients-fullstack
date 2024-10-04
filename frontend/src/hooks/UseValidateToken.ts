@@ -11,7 +11,11 @@ export const UseValidateToken = (
 
     useEffect(() => {
         const localToken = localStorage.getItem('token');
-        if (localToken) {
+
+        if (!localToken) {
+            setLoading(false);
+            navigate('/auth', { replace: true });
+        } else {
             instance.defaults.headers.common['gfg_token_header_key'] =
                 localToken;
             instance
@@ -24,9 +28,6 @@ export const UseValidateToken = (
                     navigate('/auth');
                 })
                 .finally(() => setLoading(false));
-        } else {
-            setLoading(false);
-            navigate('/auth', { replace: true });
         }
     }, [isLogged]);
 
