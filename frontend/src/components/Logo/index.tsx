@@ -8,14 +8,13 @@ type LogoSize = 'middle' | 'small';
 interface LogoProps {
     size: LogoSize;
 }
-
-const LogoClassName = {
+const logoClassName = {
     ['middle']: { icon: 'icon', text: 'text' },
     ['small']: { icon: 'small__icon', text: 'small__text' },
 };
 
 const Logo = ({ size = 'small' }: LogoProps) => {
-    const sizeStyles = LogoClassName[size];
+    const sizeStyles = logoClassName[size];
 
     return (
         <Space>
