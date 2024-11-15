@@ -6,7 +6,7 @@ type UseDeleteItemType = (
     setBookList: SetBookList
 ) => (item: IBook) => Promise<void>;
 
-const UseDeleteItem: UseDeleteItemType = (bookList, setBookList) => {
+export const UseDeleteItem: UseDeleteItemType = (bookList, setBookList) => {
     return async (item: IBook) => {
         try {
             await deleteOneBook(item.id);
@@ -21,5 +21,3 @@ const UseDeleteItem: UseDeleteItemType = (bookList, setBookList) => {
         }
     };
 };
-
-export default UseDeleteItem;

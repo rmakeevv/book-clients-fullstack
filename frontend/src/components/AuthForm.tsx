@@ -6,12 +6,12 @@ type FieldType = {
     password?: string;
 };
 
-interface IAuthForm {
+interface AuthFormProps {
     onFinish: (values: FieldType) => void;
     onFinishFailed: (errorInfo: any) => void;
 }
 
-export default function AuthForm({ onFinish, onFinishFailed }: IAuthForm) {
+export default function AuthForm({ onFinish, onFinishFailed }: AuthFormProps) {
     return (
         <Form
             name="basic"
