@@ -14,7 +14,7 @@ type UseAuthFormProps = () => {
     isError: boolean;
 };
 
-const UseAuthForm: UseAuthFormProps = () => {
+export const UseAuthForm: UseAuthFormProps = () => {
     const { setIsLogged } = useContext(UserContext);
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
@@ -34,5 +34,3 @@ const UseAuthForm: UseAuthFormProps = () => {
 
     return { onFinish, isError };
 };
-
-export default UseAuthForm;
