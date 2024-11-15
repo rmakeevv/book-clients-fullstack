@@ -1,9 +1,14 @@
 import styles from './index.module.css';
 import { UseAuthForm } from 'hooks';
 import { AuthForm, Logo } from 'components';
-import React from 'react';
+import { OnFinishFailedErrorInfo } from '../../types';
 
-const onFinishFailed = (errorInfo: any) => {
+type FieldType = {
+    username?: string;
+    password?: string;
+};
+
+const onFinishFailed = (errorInfo: OnFinishFailedErrorInfo<FieldType>) => {
     console.log('Failed:', errorInfo);
 };
 

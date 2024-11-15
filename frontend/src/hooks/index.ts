@@ -3,5 +3,5 @@ export { default as UseFinishCreate } from './UseFinishCreate';
 export * from './UseDeleteItem';
 export { default as UseLogOut } from './UseLogOut';
 export { default as UseToggle } from './UseToggle';
-export { default as UseAuthForm } from './UseAuthForm';
+export * from './UseAuthForm';
 export { default as UseSaveRow } from './UseSaveRow';

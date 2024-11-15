@@ -1,12 +1,12 @@
 import { Button, Form, Input, InputNumber, Space } from 'antd';
 import styles from './index.module.css';
-import { FieldType, ICreateForm } from './types';
+import { CreateFormProps, FieldType } from './types';
 import { UseToggle } from 'hooks';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 const toggleClassname = (state: boolean) => (state ? 'fade__in' : 'container');
 
-const CreateForm = ({ onFinish, onFinishFailed }: ICreateForm) => {
+const CreateForm = ({ onFinish, onFinishFailed }: CreateFormProps) => {
     const { open, toggle } = UseToggle();
     const containerClassName = useMemo(() => toggleClassname(open), [open]);
 

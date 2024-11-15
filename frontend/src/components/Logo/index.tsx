@@ -1,6 +1,5 @@
 import { AliwangwangOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
-import React from 'react';
 import styles from './index.module.css';
 
 type LogoSize = 'middle' | 'small';

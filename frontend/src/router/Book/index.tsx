@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ContentWrapper, Header } from '../../components';
 import { UseLogOut } from '../../hooks';
 import { getOneBook } from '../../services';

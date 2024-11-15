@@ -6,9 +6,9 @@ import {
     UseSaveRow,
     UseGetAllBooksData,
 } from 'hooks';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Flex, Form, message, Popconfirm, Space, Table } from 'antd';
-import { BookList, IBook } from 'types';
+import { BookList, IBook, OnFinishFailedErrorInfo } from 'types';
 import {
     DeleteOutlined,
     EditOutlined,
@@ -36,7 +36,7 @@ const Root = () => {
 
     const isEditing = (record: IBook) => record.id.toString() === editingKey;
 
-    const onFinishFailed = (errorInfo: any) => {
+    const onFinishFailed = (errorInfo: OnFinishFailedErrorInfo<IBook>) => {
         console.log('Failed:', errorInfo);
     };
 
@@ -86,6 +86,7 @@ const Root = () => {
         {
             width: '130px',
             dataIndex: 'operation',
+            // eslint-disable-next-line
             render: (_: any, record: IBook) => {
                 const editable = isEditing(record);
                 return editable ? (

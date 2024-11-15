@@ -1,6 +1,6 @@
 import { UseValidateToken } from 'hooks/UseValidateToken';
 import { Outlet } from 'react-router-dom';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 import { createContext } from 'react';
 

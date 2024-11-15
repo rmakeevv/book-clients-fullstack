@@ -1,4 +1,4 @@
-import { IBook } from 'types';
+import { IBook, OnFinishFailedErrorInfo } from 'types';
 
 export type FieldType = {
     name?: string;
@@ -7,7 +7,7 @@ export type FieldType = {
     author?: string;
 };
 
-export interface ICreateForm {
+export interface CreateFormProps {
     onFinish: (values: IBook) => void;
-    onFinishFailed: (errorInfo: any) => void;
+    onFinishFailed: (errorInfo: OnFinishFailedErrorInfo<IBook>) => void;
 }

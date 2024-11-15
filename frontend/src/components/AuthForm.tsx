@@ -1,5 +1,5 @@
 import { Button, Form, Input } from 'antd';
-import React from 'react';
+import { ValidateErrorEntity } from 'rc-field-form/es/interface';
 
 type FieldType = {
     username?: string;
@@ -8,7 +8,7 @@ type FieldType = {
 
 interface AuthFormProps {
     onFinish: (values: FieldType) => void;
-    onFinishFailed: (errorInfo: any) => void;
+    onFinishFailed: (errorInfo: ValidateErrorEntity<FieldType>) => void;
 }
 
 export default function AuthForm({ onFinish, onFinishFailed }: AuthFormProps) {

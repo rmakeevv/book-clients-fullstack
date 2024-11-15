@@ -1,5 +1,5 @@
 import { Form, Input, InputNumber } from 'antd';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { EditableCellProps } from './types';
 
 const EditableCell = ({
@@ -7,8 +7,6 @@ const EditableCell = ({
     dataIndex,
     title,
     inputType,
-    record,
-    index,
     children,
     ...restProps
 }: EditableCellProps) => {

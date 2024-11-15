@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { ValidateErrorEntity } from 'rc-field-form/es/interface';
 
 export interface IBook {
     id: number;
@@ -12,3 +13,5 @@ export interface IBook {
 export type SetBookList = Dispatch<SetStateAction<IBook[] | undefined>>;
 
 export type BookList = IBook[] | undefined;
+
+export type OnFinishFailedErrorInfo<T> = ValidateErrorEntity<T>;
